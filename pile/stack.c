@@ -6,6 +6,7 @@
 */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "h_stack.h"
 
 void insert(stack_t *stack, char str)
