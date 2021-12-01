@@ -6,6 +6,7 @@
 */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "h_queue.h"
 
 void put_on(queue_t *queue, char str)
