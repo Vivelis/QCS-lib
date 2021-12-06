@@ -14,7 +14,7 @@ void put_on(queue_t *queue, char str)
     element_t *current = NULL;
     element_t *new = NULL;
 
-    new = malloc(sizeof(*new));
+    new = malloc(sizeof(element_t));
     if (queue == NULL || new == NULL) {
         exit(84);
     }
@@ -47,8 +47,8 @@ char *put_out(queue_t *queue)
 
 queue_t *initialisation(void)
 {
-    queue_t *queue = malloc(sizeof(*queue));
-    element_t *element = malloc(sizeof(*element));
+    queue_t *queue = malloc(sizeof(queue_t));
+    element_t *element = malloc(sizeof(element_t));
 
     if (queue == NULL || element == NULL) {
         exit(84);
