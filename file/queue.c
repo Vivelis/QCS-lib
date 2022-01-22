@@ -10,7 +10,7 @@
 #include "../h_queue.h"
 #include "lib/headers/my.h"
 
-void put_on(queue_t *queue, char str)
+void put_on(queue_t *queue, char *str)
 {
     element_t *current = NULL;
     element_t *new = NULL;

@@ -10,7 +10,7 @@
 
 typedef struct element_s element_t;
 struct element_s {
-    char str;
+    char *str;
     element_t *next;
 };
 typedef struct queue_s {
