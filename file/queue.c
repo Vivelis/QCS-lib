@@ -6,7 +6,9 @@
 */
 
 #include <unistd.h>
-#include "h_queue.h"
+#include <stdlib.h>
+#include "../h_queue.h"
+#include "lib/headers/my.h"
 
 void put_on(queue_t *queue, char str)
 {
@@ -14,9 +16,8 @@ void put_on(queue_t *queue, char str)
     element_t *new = NULL;
 
     new = malloc(sizeof(*new));
-    if (queue == NULL || new == NULL) {
-        exit(84);
-    }
+    if (queue == NULL || new == NULL)
+        return my_puterror("error:put_on: queue or new is NULL", -1);
     new->str = str;
     new->next = NULL;
     if (queue->first != NULL) {
@@ -34,7 +35,7 @@ char *put_out(queue_t *queue)
     char *content = NULL;
 
     if (!queue)
-        exit(84);
+        return my_puterror("error:put_out: queue is NULL", -1);
     if (queue->first != NULL) {
         element = queue->first;
         content = element->str;
@@ -44,13 +45,14 @@ char *put_out(queue_t *queue)
     return content;
 }
 
-queue_t *initialisation(void)
+queue_t *init_queue(void)
 {
     queue_t *queue = malloc(sizeof(*queue));
     element_t *element = malloc(sizeof(*element));
 
     if (queue == NULL || element == NULL) {
-        exit(84);
+        my_puterror("error:queue: can't init queue", -1);
+        return NULL;
     }
     element->str = NULL;
     element->next = NULL;
@@ -58,7 +60,7 @@ queue_t *initialisation(void)
     return queue;
 }
 
-void free_fct_array(queue_t *queue)
+void free_queue(queue_t *queue)
 {
     element_t *last = queue->first;
 
