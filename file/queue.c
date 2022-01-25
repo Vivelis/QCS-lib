@@ -10,12 +10,12 @@
 #include "../h_queue.h"
 #include "lib/headers/my.h"
 
-void put_on(queue_t *queue, char *str)
+int put_on(queue_t *queue, char *str)
 {
     element_t *current = NULL;
     element_t *new = NULL;
 
-    new = malloc(sizeof(*new));
+    new = malloc(sizeof(element_t));
     if (queue == NULL || new == NULL)
         return my_puterror("error:put_on: queue or new is NULL", -1);
     new->str = str;
@@ -27,6 +27,7 @@ void put_on(queue_t *queue, char *str)
         current->next = new;
     } else
         queue->first = new;
+    return 0;
 }
 
 char *put_out(queue_t *queue)
@@ -34,8 +35,10 @@ char *put_out(queue_t *queue)
     element_t *element = NULL;
     char *content = NULL;
 
-    if (!queue)
-        return my_puterror("error:put_out: queue is NULL", -1);
+    if (!queue) {
+        my_puterror("error:put_out: queue is NULL", -1);
+        return NULL;
+    }
     if (queue->first != NULL) {
         element = queue->first;
         content = element->str;
@@ -47,26 +50,24 @@ char *put_out(queue_t *queue)
 
 queue_t *init_queue(void)
 {
-    queue_t *queue = malloc(sizeof(*queue));
-    element_t *element = malloc(sizeof(*element));
+    queue_t *queue = malloc(sizeof(queue_t));
 
-    if (queue == NULL || element == NULL) {
+    if (queue == NULL) {
         my_puterror("error:queue: can't init queue", -1);
         return NULL;
     }
-    element->str = NULL;
-    element->next = NULL;
-    queue->first = element;
+    queue->first = NULL;
     return queue;
 }
 
 void free_queue(queue_t *queue)
 {
-    element_t *last = queue->first;
+    element_t *current = queue->first;
+    element_t *next = NULL;
 
-    while (queue->first != NULL) {
-        queue->first = last->next;
-        free(last);
-        last = queue->first;
+    while (current->next != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
     }
 }

@@ -18,7 +18,7 @@ typedef struct queue_s {
 }queue_t;
 
 // queue.c
-void put_on(queue_t *queue, char *str);
+int put_on(queue_t *queue, char *str);
 char *put_out(queue_t *queue);
 queue_t *init_queue(void);
 void free_queue(queue_t *queue);
