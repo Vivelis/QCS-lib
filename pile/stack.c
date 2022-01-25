@@ -7,27 +7,29 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "h_stack.h"
+#include "../h_stack.h"
+#include "lib/headers/my.h"
 
-void insert(stack_t *stack, char str)
+void put_on(stack_t *stack, char *str)
 {
     element_t *new = malloc(sizeof(element_t));
 
     if (stack == NULL || new == NULL) {
-        exit(84);
+        my_puterror("error:put_on: stack or new is NULL", -1);
     }
     new->str = str;
     new->next = stack->first;
     stack->first = new;
 }
 
-stack_t *initialisation(void)
+stack_t *init_stack(void)
 {
     stack_t *stack = malloc(sizeof(stack_t));
     element_t *element = malloc(sizeof(*element));
 
     if (stack == NULL || element == NULL) {
-        exit(84);
+        my_puterror("error:init_stack: can't init stack", -1);
+        return NULL;
     }
     element->str = NULL;
     element->next = NULL;
@@ -35,7 +37,7 @@ stack_t *initialisation(void)
     return stack;
 }
 
-void free_fct_array(stack_t *stack)
+void free_stack(stack_t *stack)
 {
     element_t *last = stack->first;
 
