@@ -12,7 +12,7 @@
 
 void put_on(stack_t *stack, char *str)
 {
-    element_t *new = malloc(sizeof(*new));
+    element_t *new = malloc(sizeof(element_t));
 
     if (stack == NULL || new == NULL) {
         my_puterror("error:put_on: stack or new is NULL", -1);
@@ -24,7 +24,7 @@ void put_on(stack_t *stack, char *str)
 
 stack_t *init_stack(void)
 {
-    stack_t *stack = malloc(sizeof(*stack));
+    stack_t *stack = malloc(sizeof(stack_t));
     element_t *element = malloc(sizeof(*element));
 
     if (stack == NULL || element == NULL) {
