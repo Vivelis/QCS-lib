@@ -1,45 +1,45 @@
 /*
 ** EPITECH PROJECT, 2021
-** stack
+** my_stack
 ** File description:
 ** stack exemple
 */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "../h_stack.h"
-#include "lib/headers/my.h"
+#include "my_stack.h"
+#include "my.h"
 
-void put_on(stack_t *stack, char *str)
+void put_on(my_stack_t *stack, char *content)
 {
-    element_t *new = malloc(sizeof(*new));
+    my_element_t *new = malloc(sizeof(*new));
 
     if (stack == NULL || new == NULL) {
         my_puterror("error:put_on: stack or new is NULL", -1);
     }
-    new->str = str;
+    new->content = content;
     new->next = stack->first;
     stack->first = new;
 }
 
-stack_t *init_stack(void)
+my_stack_t *init_stack(void)
 {
-    stack_t *stack = malloc(sizeof(*stack));
-    element_t *element = malloc(sizeof(*element));
+    my_stack_t *stack = malloc(sizeof(*stack));
+    my_element_t *element = malloc(sizeof(*element));
 
     if (stack == NULL || element == NULL) {
         my_puterror("error:init_stack: can't init stack", -1);
         return NULL;
     }
-    element->str = NULL;
+    element->content = NULL;
     element->next = NULL;
     stack->first = element;
     return stack;
 }
 
-void free_stack(stack_t *stack)
+void free_stack(my_stack_t *stack)
 {
-    element_t *last = stack->first;
+    my_element_t *last = stack->first;
 
     while (stack->first != NULL) {
         stack->first = last->next;
