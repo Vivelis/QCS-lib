@@ -10,7 +10,7 @@
 #include "my_stack.h"
 #include "my.h"
 
-void put_on(my_stack_t *stack, char *content)
+void put_on_stack(my_stack_t *stack, char *content)
 {
     my_element_t *new = malloc(sizeof(*new));
 

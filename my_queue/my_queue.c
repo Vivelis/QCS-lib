@@ -10,7 +10,7 @@
 #include "my_queue.h"
 #include "my.h"
 
-int put_on(my_queue_t *queue, void *content)
+int put_on_queue(my_queue_t *queue, void *content)
 {
     my_element_t *current = NULL;
     my_element_t *new = NULL;
@@ -30,7 +30,7 @@ int put_on(my_queue_t *queue, void *content)
     return 0;
 }
 
-char *put_out(my_queue_t *queue)
+char *put_out_queue(my_queue_t *queue)
 {
     my_element_t *element = NULL;
     char *content = NULL;

@@ -18,8 +18,8 @@ typedef struct my_queue_s {
 }my_queue_t;
 
 // my_queue.c
-int put_on(my_queue_t *queue, void *content);
-void *put_out(my_queue_t *queue);
+int put_on_queue(my_queue_t *queue, void *content);
+void *put_out_queue(my_queue_t *queue);
 my_queue_t *init_queue(void);
 void free_queue(my_queue_t *queue);
 #endif
