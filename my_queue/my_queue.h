@@ -5,16 +5,16 @@
 ** header for queue
 */
 
-#ifndef _H_QUEUE_H_
-    #define _H_QUEUE_H_
+#ifndef _MY_QUEUE_H_
+    #define _MY_QUEUE_H_
 
-typedef struct my_element_s my_element_t;
+typedef struct my_element_s queue_element_t;
 struct my_element_s {
     void *content;
-    my_element_t *next;
+    queue_element_t *next;
 };
 typedef struct my_queue_s {
-    my_element_t *first;
+    queue_element_t *first;
 }my_queue_t;
 
 // my_queue.c

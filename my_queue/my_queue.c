@@ -10,10 +10,11 @@
 #include "my_queue.h"
 #include "my.h"
 
+/* add a new element on the top of the queue. */
 int put_on_queue(my_queue_t *queue, void *content)
 {
-    my_element_t *current = NULL;
-    my_element_t *new = NULL;
+    queue_element_t *current = NULL;
+    queue_element_t *new = NULL;
 
     new = malloc(sizeof(element_t));
     if (queue == NULL || new == NULL)
@@ -30,9 +31,10 @@ int put_on_queue(my_queue_t *queue, void *content)
     return 0;
 }
 
+/* remove the first element of a queue and return it's value. */
 char *put_out_queue(my_queue_t *queue)
 {
-    my_element_t *element = NULL;
+    queue_element_t *element = NULL;
     char *content = NULL;
 
     if (!queue) {
@@ -48,6 +50,7 @@ char *put_out_queue(my_queue_t *queue)
     return content;
 }
 
+/* allocate memory for a queue and return a pointer to it. */
 my_queue_t *init_queue(void)
 {
     my_queue_t *queue = malloc(sizeof(queue_t));
@@ -60,10 +63,11 @@ my_queue_t *init_queue(void)
     return queue;
 }
 
+/* free alocated space for a queue. */
 void free_queue(my_queue_t *queue)
 {
-    my_element_t *current = queue->first;
-    my_element_t *next = NULL;
+    queue_element_t *current = queue->first;
+    queue_element_t *next = NULL;
 
     while (current->next != NULL) {
         next = current->next;
