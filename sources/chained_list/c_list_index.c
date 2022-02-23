@@ -25,6 +25,16 @@ static list_element_t *allocate_elem(void *content)
     return new;
 }
 
+/* switch the next element of last with it's next */
+static void switch_elem(list_element_t *last)
+{
+    list_element_t *next = NULL;
+
+    next = last->next->next;
+    free(last->next);
+    last->next = next;
+}
+
 /* add a new element at the given index to the list. */
 int insert_listi(c_list_t *list, unsigned int index, void *content)
 {
@@ -32,18 +42,19 @@ int insert_listi(c_list_t *list, unsigned int index, void *content)
 
     if (list->first == NULL) {
         list->first = allocate_elem(content);
+        list->len = list->len + 1;
         return 0;
     }
     current = list->first;
     for (; index > 0; index--) {
-        current = current->next;
         if (current->next == NULL && index == 1) {
             current->next = allocate_elem(content);
             list->len = list->len + 1;
             return 0;
-        } else if (current->next == NULL && index == 1 ) {
+        } else if (current->next == NULL && index != 1 ) {
             return qcs_puterror("insert_listi: index out of range.\n", 84);
         }
+        current = current->next;
     }
     current->content = content;
     return 0;
@@ -52,21 +63,24 @@ int insert_listi(c_list_t *list, unsigned int index, void *content)
 /* remove the element at the given index of the list. */
 int delete_listi(c_list_t *list, unsigned int index)
 {
-    list_element_t *current = NULL;
+    list_element_t *last = NULL;
 
     if (list->first == NULL)
-        return qcs_puterror("delete_listi: can't delete, list is empty.\n", 84);
-    current = list->first;
+        return qcs_puterror("delete_listi: can't delete, list empty.\n", 84);
+    if (index == 0) {
+        free(list->first);
+        list->first = NULL;
+        list->len = 0;
+        return 0;
+    }
+    last = list->first;
     for (; index > 1; index--) {
-        current = current->next;
-        if (current->next == NULL) {
+        if (last->next == NULL) {
             return qcs_puterror("delete_listi: index out of range.\n", 84);
         }
+        last = last->next;
     }
-    if (current->next->next == NULL)
-        current->next = NULL;
-    else
-        current->next = current->next->next;
+    switch_elem(last);
     list->len = list->len - 1;
     return 0;
 }
@@ -82,11 +96,11 @@ void *get_listi(c_list_t *list, unsigned int index)
     }
     current = list->first;
     for (; index > 0; index--) {
-        current = current->next;
         if (current->next == NULL) {
             qcs_puterror("get_listi: index out of range.\n", 84);
             return NULL;
         }
+        current = current->next;
     }
-    return current->next->content;
+    return current->content;
 }
