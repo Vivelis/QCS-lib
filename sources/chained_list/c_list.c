@@ -7,8 +7,8 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "my_list.h"
-#include "my.h"
+#include "c_list.h"
+#include "qcs_utility.h"
 
 /* add a new element on the top of the list. */
 int put_on_list(c_list_t *list, void *content)
@@ -16,9 +16,9 @@ int put_on_list(c_list_t *list, void *content)
     list_element_t *current = NULL;
     list_element_t *new = NULL;
 
-    new = malloc(sizeof(element_t));
+    new = malloc(sizeof(list_element_t));
     if (list == NULL || new == NULL)
-        return my_puterror("error:put_on: list or new is NULL", -1);
+        return qcs_puterror("error:put_on: list or new is NULL", -1);
     new->content = content;
     new->next = NULL;
     if (list->first != NULL) {
@@ -38,7 +38,7 @@ void *put_out_list(c_list_t *list)
     void *content = NULL;
 
     if (!list) {
-        my_puterror("error:put_out: list is NULL", -1);
+        qcs_puterror("error:put_out: list is NULL", -1);
         return NULL;
     }
     if (list->first != NULL) {
@@ -53,10 +53,10 @@ void *put_out_list(c_list_t *list)
 /* allocate memory for a list and return a pointer to it. */
 c_list_t *init_list(void)
 {
-    c_list_t *list = malloc(sizeof(list_t));
+    c_list_t *list = malloc(sizeof(c_list_t));
 
     if (list == NULL) {
-        my_puterror("error:list: can't init list", -1);
+        qcs_puterror("error:list: can't init list", -1);
         return NULL;
     }
     list->first = NULL;

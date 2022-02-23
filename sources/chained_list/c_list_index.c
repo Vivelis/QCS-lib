@@ -5,16 +5,21 @@
 ** c_list_index.c
 */
 
+#include <stddef.h>
+#include <stdlib.h>
 #include "c_list.h"
+#include "qcs_utility.h"
 
 /* allocate memory for an element and return it */
 static list_element_t *allocate_elem(void *content)
 {
     list_element_t *new = NULL;
 
-    new = malloc(sizeof(element_t));
-    if (list == NULL || new == NULL)
-        return my_puterror("error:put_on: list or new is NULL", -1);
+    new = malloc(sizeof(list_element_t));
+    if (new == NULL) {
+        qcs_puterror("error:put_on: list or new is NULL", -1);
+        return NULL;
+    }
     new->content = content;
     new->next = NULL;
     return new;
@@ -37,7 +42,7 @@ int insert_listi(c_list_t *list, unsigned int index, void *content)
             list->len = list->len + 1;
             return 0;
         } else if (current->next == NULL && index == 1 ) {
-            return my_puterror("insert_listi: index out of range.\n", 84);
+            return qcs_puterror("insert_listi: index out of range.\n", 84);
         }
     }
     current->content = content;
@@ -50,12 +55,12 @@ int delete_listi(c_list_t *list, unsigned int index)
     list_element_t *current = NULL;
 
     if (list->first == NULL)
-        return my_puterror("delete_listi: can't delete, list is empty.\n", 84);
+        return qcs_puterror("delete_listi: can't delete, list is empty.\n", 84);
     current = list->first;
     for (; index > 1; index--) {
         current = current->next;
         if (current->next == NULL) {
-            return my_puterror("delete_listi: index out of range.\n", 84);
+            return qcs_puterror("delete_listi: index out of range.\n", 84);
         }
     }
     if (current->next->next == NULL)
@@ -71,14 +76,15 @@ void *get_listi(c_list_t *list, unsigned int index)
     list_element_t *current = NULL;
 
     if (list->first == NULL) {
-        my_puterror("get_listi: can't access, list is empty.\n", 84);
+        qcs_puterror("get_listi: can't access, list is empty.\n", 84);
         return NULL;
     }
     current = list->first;
     for (; index > 0; index--) {
         current = current->next;
         if (current->next == NULL) {
-            return my_puterror("get_listi: index out of range.\n", 84);
+            qcs_puterror("get_listi: index out of range.\n", 84);
+            return NULL;
         }
     }
     return current->next->content;

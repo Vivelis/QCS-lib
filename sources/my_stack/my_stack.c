@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "my_stack.h"
-#include "my.h"
+#include "qcs_utility.h"
 
 /* add a new element on the top of the stack. */
 void put_on_stack(my_stack_t *stack, char *content)
@@ -16,7 +16,7 @@ void put_on_stack(my_stack_t *stack, char *content)
     stack_element_t *new = malloc(sizeof(*new));
 
     if (stack == NULL || new == NULL) {
-        my_puterror("error:put_on: stack or new is NULL", -1);
+        qcs_puterror("error:put_on: stack or new is NULL", -1);
     }
     new->content = content;
     new->next = stack->first;
@@ -30,7 +30,7 @@ void *put_out_stack(my_stack_t *stack)
     void *content = NULL;
 
     if (!stack) {
-        my_puterror("error:put_out: stack is NULL", -1);
+        qcs_puterror("error:put_out: stack is NULL", -1);
         return NULL;
     }
     if (stack->first != NULL) {
@@ -49,7 +49,7 @@ my_stack_t *init_stack(void)
     stack_element_t *element = malloc(sizeof(*element));
 
     if (stack == NULL || element == NULL) {
-        my_puterror("error:init_stack: can't init stack", -1);
+        qcs_puterror("error:init_stack: can't init stack", -1);
         return NULL;
     }
     element->content = NULL;

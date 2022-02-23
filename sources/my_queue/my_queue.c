@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "my_queue.h"
-#include "my.h"
+#include "qcs_utility.h"
 
 /* add a new element on the top of the queue. */
 int put_on_queue(my_queue_t *queue, void *content)
@@ -16,9 +16,9 @@ int put_on_queue(my_queue_t *queue, void *content)
     queue_element_t *current = NULL;
     queue_element_t *new = NULL;
 
-    new = malloc(sizeof(element_t));
+    new = malloc(sizeof(queue_element_t));
     if (queue == NULL || new == NULL)
-        return my_puterror("error:put_on: queue or new is NULL", -1);
+        return qcs_puterror("error:put_on: queue or new is NULL", -1);
     new->content = content;
     new->next = NULL;
     if (queue->first != NULL) {
@@ -38,7 +38,7 @@ void *put_out_queue(my_queue_t *queue)
     void *content = NULL;
 
     if (!queue) {
-        my_puterror("error:put_out: queue is NULL", -1);
+        qcs_puterror("error:put_out: queue is NULL", -1);
         return NULL;
     }
     if (queue->first != NULL) {
@@ -53,10 +53,10 @@ void *put_out_queue(my_queue_t *queue)
 /* allocate memory for a queue and return a pointer to it. */
 my_queue_t *init_queue(void)
 {
-    my_queue_t *queue = malloc(sizeof(queue_t));
+    my_queue_t *queue = malloc(sizeof(my_queue_t));
 
     if (queue == NULL) {
-        my_puterror("error:queue: can't init queue", -1);
+        qcs_puterror("error:queue: can't init queue", -1);
         return NULL;
     }
     queue->first = NULL;
