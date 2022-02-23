@@ -32,7 +32,9 @@ SRCDIR	=	my
 
 #tests data
 TESTBIN	=	qcs_tests
-TESTSRC	=	tests/c_list_unit_tests.c
+TESTSRC	=	tests/c_list_unit_tests.c	\
+			tests/my_queue_unit_tests.c	\
+			tests/my_stack_unit_tests.c
 TESTOBJ	=	$(TESTSRC:.c=.o)
 
 #flags
@@ -78,7 +80,7 @@ debug: fclean $(OBJ)
 	@echo -e "\e[1;36mFinished compiling $(LIB) $@\e[0m"
 
 lib_unit_tests: $(OBJ) $(TESTOBJ)
-	@$(CC) -o $(TESTBIN) $(OBJ) $(TESTOBJ) $(LDFLAGS) $(CFLAGS) $(TESTFLAGS)
+	@$(CC) -o $(TESTBIN) $(OBJ) $(TESTOBJ) $(IFLAGS) $(CFLAGS) $(TESTFLAGS)
 	@echo -e "\e[1;36mFinished compiling $(TESTBIN) $@\e[0m"
 
 lib_run_tests: lib_unit_tests

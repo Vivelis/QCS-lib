@@ -14,4 +14,5 @@ Test(c_listi, initialise)
 
     list = init_list();
     cr_assert_neq(list, NULL);
+    free_list(list);
 }
