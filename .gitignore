@@ -43,6 +43,7 @@ unit_test
 *.idb
 *.pdb
 debug
+qcs_tests
 
 # Kernel Module Compile Results
 *.mod*
