@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "my_stack.h": "c",
-        "qcs_utility.h": "c"
-    },
-    "C_Cpp.errorSquiggles": "Disabled"
-}
