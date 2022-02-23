@@ -32,10 +32,10 @@ int put_on_queue(my_queue_t *queue, void *content)
 }
 
 /* remove the first element of a queue and return it's value. */
-char *put_out_queue(my_queue_t *queue)
+void *put_out_queue(my_queue_t *queue)
 {
     queue_element_t *element = NULL;
-    char *content = NULL;
+    void *content = NULL;
 
     if (!queue) {
         my_puterror("error:put_out: queue is NULL", -1);

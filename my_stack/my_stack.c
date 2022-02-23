@@ -24,10 +24,10 @@ void put_on_stack(my_stack_t *stack, char *content)
 }
 
 /* remove the last element of a stack and return it's value. */
-char *put_out_stack(my_stack_t *stack)
+void *put_out_stack(my_stack_t *stack)
 {
     stack_element_t *element = NULL;
-    char *content = NULL;
+    void *content = NULL;
 
     if (!stack) {
         my_puterror("error:put_out: stack is NULL", -1);
