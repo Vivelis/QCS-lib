@@ -25,7 +25,6 @@ c_list_t *init_list(void);
 void free_list(c_list_t *list);
 
 // c_list_index.c
-static list_element_t *allocate_elem(void *content);
 int insert_listi(c_list_t *list, unsigned int index, void *content);
 int delete_listi(c_list_t *list, unsigned int index);
 void *get_listi(c_list_t *list, unsigned int index);
