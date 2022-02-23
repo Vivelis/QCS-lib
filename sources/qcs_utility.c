@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <unistd.h>
 
 static size_t qcs_getstrlen(char const *str)
 {
