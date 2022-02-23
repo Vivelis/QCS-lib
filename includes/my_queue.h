@@ -6,7 +6,7 @@
 */
 
 #ifndef _MY_QUEUE_H_
-    #define _MY_QUEUE_H_
+#define _MY_QUEUE_H_
 
 typedef struct my_element_s queue_element_t;
 struct my_element_s {
@@ -15,7 +15,7 @@ struct my_element_s {
 };
 typedef struct my_queue_s {
     queue_element_t *first;
-}my_queue_t;
+} my_queue_t;
 
 // my_queue.c
 int put_on_queue(my_queue_t *queue, void *content);

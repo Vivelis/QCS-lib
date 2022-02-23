@@ -6,7 +6,7 @@
 */
 
 #ifndef _C_LIST_H_
-    #define _C_LIST_H_
+#define _C_LIST_H_
 
 typedef struct list_element_s list_element_t;
 struct list_element_s {
@@ -16,7 +16,7 @@ struct list_element_s {
 typedef struct c_list_s {
     list_element_t *first;
     unsigned int len;
-}c_list_t;
+} c_list_t;
 
 // c_list.c
 int put_on_list(c_list_t *list, void *content);

@@ -6,7 +6,7 @@
 */
 
 #ifndef _MY_STACK_H_
-    #define _MY_STACK_H_
+#define _MY_STACK_H_
 
 typedef struct my_element_s stack_element_t;
 struct my_element_s {
@@ -15,7 +15,7 @@ struct my_element_s {
 };
 typedef struct my_stack_s {
     stack_element_t *first;
-}my_stack_t;
+} my_stack_t;
 
 // my_stack.c
 void put_on_stack(my_stack_t *stack, char *content);
