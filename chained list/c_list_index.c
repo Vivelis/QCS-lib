@@ -6,6 +6,7 @@
 */
 
 #include "c_list.h"
+
 /* allocate memory for an element and return it */
 static list_element_t *allocate_elem(void *content)
 {
@@ -31,12 +32,11 @@ int insert_listi(c_list_t *list, unsigned int index, void *content)
     current = list->first;
     for (; index > 0; index--) {
         current = current->next;
-        if (current->next == NULL) {
-            if (index == 1) {
-                current->next = allocate_elem(content);
-                list->len = list->len + 1;
-                return 0;
-            }
+        if (current->next == NULL && index == 1) {
+            current->next = allocate_elem(content);
+            list->len = list->len + 1;
+            return 0;
+        } else if (current->next == NULL && index == 1 ) {
             return my_puterror("insert_listi: index out of range.\n", 84);
         }
     }
