@@ -69,12 +69,12 @@ c_list_t *init_list(void)
 /* free alocated space for a list. */
 void free_list(c_list_t *list)
 {
-    list_element_t *current = list->first;
-    list_element_t *next = NULL;
+    list_element_t *last = list->first;
 
-    while (current->next != NULL) {
-        next = current->next;
-        free(current);
-        current = next;
+    while (list->first != NULL) {
+        list->first = last->next;
+        free(last);
+        last = list->first;
     }
+    free(list);
 }

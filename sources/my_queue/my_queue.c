@@ -66,12 +66,12 @@ my_queue_t *init_queue(void)
 /* free alocated space for a queue. */
 void free_queue(my_queue_t *queue)
 {
-    queue_element_t *current = queue->first;
-    queue_element_t *next = NULL;
+    queue_element_t *last = queue->first;
 
-    while (current->next != NULL) {
-        next = current->next;
-        free(current);
-        current = next;
+    while (queue->first != NULL) {
+        queue->first = last->next;
+        free(last);
+        last = queue->first;
     }
+    free(queue);
 }

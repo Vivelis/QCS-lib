@@ -11,7 +11,7 @@
 #include "qcs_utility.h"
 
 /* add a new element on the top of the stack. */
-void put_on_stack(my_stack_t *stack, char *content)
+void put_on_stack(my_stack_t *stack, void *content)
 {
     stack_element_t *new = malloc(sizeof(*new));
 
@@ -68,4 +68,5 @@ void free_stack(my_stack_t *stack)
         free(last);
         last = stack->first;
     }
+    free(stack);
 }

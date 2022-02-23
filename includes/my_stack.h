@@ -18,7 +18,7 @@ typedef struct my_stack_s {
 }my_stack_t;
 
 // my_stack.c
-void put_on_stack(my_stack_t *stack, char *content);
+void put_on_stack(my_stack_t *stack, void *content);
 void *put_out_stack(my_stack_t *stack);
 my_stack_t *init_stack(void);
 void free_stack(my_stack_t *stack);
