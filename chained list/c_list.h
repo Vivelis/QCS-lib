@@ -15,6 +15,7 @@ struct list_element_s {
 };
 typedef struct c_list_s {
     list_element_t *first;
+    unsigned int len;
 }c_list_t;
 
 // c_list.c

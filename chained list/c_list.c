@@ -32,10 +32,10 @@ int put_on_list(c_list_t *list, void *content)
 }
 
 /* remove the last element of a list and return it's value. */
-char *put_out_list(c_list_t *list)
+void *put_out_list(c_list_t *list)
 {
     list_element_t *element = NULL;
-    char *content = NULL;
+    void *content = NULL;
 
     if (!list) {
         my_puterror("error:put_out: list is NULL", -1);
