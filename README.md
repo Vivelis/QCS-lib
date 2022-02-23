@@ -73,6 +73,9 @@ c_list_t *init_list(void)
 /* free alocated space for a list. */
 void free_list(c_list_t *list)
 ```
+
+-----
+
 ```c
 // c_list_index.c
 ```
