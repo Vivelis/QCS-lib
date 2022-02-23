@@ -67,6 +67,7 @@ int delete_listi(c_list_t *list, unsigned int index)
         current->next = NULL;
     else
         current->next = current->next->next;
+    list->len = list->len - 1;
     return 0;
 }
 

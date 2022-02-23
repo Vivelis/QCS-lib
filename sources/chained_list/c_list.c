@@ -28,6 +28,7 @@ int put_on_list(c_list_t *list, void *content)
         current->next = new;
     } else
         list->first = new;
+    list->len = list->len + 1;
     return 0;
 }
 
@@ -46,6 +47,7 @@ void *put_out_list(c_list_t *list)
         content = element->content;
         list->first = element->next;
         free(element);
+        list->len = list->len - 1;
     }
     return content;
 }
@@ -60,6 +62,7 @@ c_list_t *init_list(void)
         return NULL;
     }
     list->first = NULL;
+    list->len = 0;
     return list;
 }
 
