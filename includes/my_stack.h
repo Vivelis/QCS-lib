@@ -10,11 +10,11 @@
 
 typedef struct my_element_s stack_element_t;
 struct my_element_s {
-    char *content;
-    stack_element_t *next;
+  char *content;
+  stack_element_t *next;
 };
 typedef struct my_stack_s {
-    stack_element_t *first;
+  stack_element_t *first;
 } my_stack_t;
 
 // my_stack.c

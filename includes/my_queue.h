@@ -10,11 +10,11 @@
 
 typedef struct my_element_s queue_element_t;
 struct my_element_s {
-    void *content;
-    queue_element_t *next;
+  void *content;
+  queue_element_t *next;
 };
 typedef struct my_queue_s {
-    queue_element_t *first;
+  queue_element_t *first;
 } my_queue_t;
 
 // my_queue.c
